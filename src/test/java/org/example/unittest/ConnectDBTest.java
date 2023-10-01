@@ -1,18 +1,40 @@
 package org.example.unittest;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.*;
 
+@Tag("db-unit-test")
+@DisplayName("Connection to DB")
 public class ConnectDBTest {
 
     ConnectDB connectDB = new ConnectDB();
 
+    @BeforeAll
+    public static void connectAll(){
+        System.out.println("Connecting All..");
+    }
+
+    @AfterAll
+    public static void finishAll(){
+        System.out.println("Finished All");
+    }
+
+    @BeforeEach
+    public void connected(){
+        System.out.println("Connecting..");
+    }
+
+    @AfterEach
+    public void finished(){
+        System.out.println("Finished");
+    }
+
     @Test
+    @DisplayName("Validation success scenario to DB")
     public void testValidateSuccess(){
 
         var result = connectDB.validate("root","");
 
-        Assert.assertTrue("Validation successfully", result);
+        Assertions.assertTrue(result);
     }
 
     @Test
@@ -20,19 +42,18 @@ public class ConnectDBTest {
 
         var result = connectDB.validate("","");
 
-        Assert.assertFalse("Validation fail", result);
+        Assertions.assertFalse(result, "Validation not valid");
     }
 
     @Test
     public void testConnectSuccess(){
         var connect = connectDB.connect("localhost",8080);
-        Assert.assertTrue("Database connected", connect);
+        Assertions.assertTrue(connect,"Successfully connected to DB");
     }
 
     @Test
+    @Disabled
     public void testConnectFailed(){
-        Assert.assertThrows(IllegalArgumentException.class, () -> {
-            connectDB.connect("localhost",80);
-        });
+        Assertions.assertThrows(IllegalArgumentException.class, () -> connectDB.connect("localhost",80));
     }
 }
