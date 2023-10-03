@@ -13,6 +13,7 @@
     <module>stream</module>
     <module>unittest</module>
     <module>database</module>
+    <module>thread</module>
   </modules>
 
   <name>JavaReflectionFundamental</name>
