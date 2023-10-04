@@ -2,6 +2,7 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 
+//LOW LEVEL-RECOMMENDED TO DON'T USE THIS
 public class SynchronizedTest {
 
     @Test

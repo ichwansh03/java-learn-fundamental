@@ -11,7 +11,8 @@ public class FutureTest {
 
     @Test
     void testFuture() throws ExecutionException, InterruptedException {
-        var executor = Executors.newWorkStealingPool(5);
+        //var executor = Executors.newWorkStealingPool(5);
+        var executor = Executors.newFixedThreadPool(5);
 
         Callable<String> callable = () -> {
             Thread.sleep(5000);
