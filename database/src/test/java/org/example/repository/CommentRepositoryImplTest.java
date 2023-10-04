@@ -4,13 +4,21 @@ import org.example.entity.Comments;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
 
+@ExtendWith(MockitoExtension.class)
 class CommentRepositoryImplTest {
 
     private CommentRepository repository;
+
+    @Mock(lenient = true)
+    private CommentRepository repositoryMock;
 
     @BeforeEach
     void setUp(){
@@ -28,12 +36,14 @@ class CommentRepositoryImplTest {
 
     @Test
     void testGetId(){
-        Comments comments = repository.findById(202);
+        Mockito.when(repositoryMock.findById(203)).thenReturn(new Comments(203, "ichwan@test.com","hi"));
+        Comments comments = repository.findById(203);
         Assertions.assertNotNull(comments);
         System.out.println(comments.getId());
 
         Comments notFound = repository.findById(10);
         Assertions.assertNull(notFound);
+        Mockito.verify(repositoryMock, Mockito.times(0)).findById(203);
     }
 
     @Test
