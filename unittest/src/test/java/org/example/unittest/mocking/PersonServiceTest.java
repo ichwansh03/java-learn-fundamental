@@ -37,11 +37,14 @@ class PersonServiceTest {
         Assertions.assertNotNull(person);
         Assertions.assertEquals("ichwan", person.getId());
         Assertions.assertEquals("Ichwan", person.getName());
+
+        Mockito.verify(repository, Mockito.times(1)).findById("ichwan");
     }
 
     //verify di method non-return value
     @Test
     void testInsertPersonSuccess(){
+
         var person = service.register("Ichwan");
         assertNotNull(person);
 
