@@ -55,4 +55,38 @@ public class ThreadTest {
         System.out.println(thread.getState());
         thread.start();
     }
+
+    //case dimana thread saling bergantung dengan thread lain
+    private String message = null;
+
+    @Test
+    void testThreadCommunication() throws InterruptedException {
+        //untuk nge-lock thread saja
+        final var lock = "";
+
+        //pastikan method wait() diexecute duluan
+        var thread1 = new Thread(() -> {
+            synchronized (lock) {
+                try {
+                    lock.wait();
+                    System.out.println(message);
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        var thread2 = new Thread(() -> {
+            synchronized (lock) {
+                message = "Open communication with thread1";
+                lock.notify();
+            }
+        });
+
+        thread1.start();
+        thread2.start();
+
+        thread1.join();
+        thread2.join();
+    }
 }
