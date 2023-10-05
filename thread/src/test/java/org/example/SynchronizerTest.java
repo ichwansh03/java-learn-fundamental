@@ -2,6 +2,8 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.Exchanger;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
@@ -65,5 +67,13 @@ public class SynchronizerTest {
         });
 
         threads.awaitTermination(1, TimeUnit.MINUTES);
+    }
+
+    //aman digunakan ketika diakses pada multiple thread
+    @Test
+    void testConvertListToSynchronized(){
+        List<String> names = List.of("Ichwan","Sholihin","Ahmad");
+        Collections.synchronizedList(names);
+
     }
 }
