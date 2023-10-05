@@ -2,14 +2,13 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 
-//LOW LEVEL-RECOMMENDED TO DON'T USE THIS
-public class SynchronizedTest {
+class AtomicCounterTest {
 
     @Test
-    void testSynchronizedCounter() throws InterruptedException{
-        var counter = new SynchronizedCounter();
+    void testAtomicCounter() throws InterruptedException{
+        var counter = new AtomicCounter();
         Runnable runnable = () -> {
-            for (int i = 0; i < 1_000_000; i++) {
+            for (int i = 0; i < 100; i++) {
                 counter.increment();
             }
         };
@@ -26,6 +25,7 @@ public class SynchronizedTest {
         thread2.join();
         thread3.join();
 
-        System.out.println(counter.getValue());
+        System.out.println(counter.getCounter());
     }
+
 }

@@ -2,14 +2,14 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 
-//LOW LEVEL-RECOMMENDED TO DON'T USE THIS
-public class SynchronizedTest {
+
+class LockCounterTest {
 
     @Test
-    void testSynchronizedCounter() throws InterruptedException{
-        var counter = new SynchronizedCounter();
+    void testLockCounter() throws InterruptedException{
+        var counter = new LockCounter();
         Runnable runnable = () -> {
-            for (int i = 0; i < 1_000_000; i++) {
+            for (int i = 0; i < 100; i++) {
                 counter.increment();
             }
         };

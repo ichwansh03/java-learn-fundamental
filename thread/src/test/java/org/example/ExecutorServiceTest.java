@@ -11,7 +11,7 @@ public class ExecutorServiceTest {
     void testSingleServiceExecutor() throws InterruptedException {
         var executor = Executors.newSingleThreadExecutor();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             executor.execute(() -> {
                 try {
                     Thread.sleep(1000);
@@ -29,7 +29,7 @@ public class ExecutorServiceTest {
     void testFixedServiceExecutor() throws InterruptedException {
         var executor = Executors.newFixedThreadPool(5);
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             executor.execute(() -> {
                 try {
                     Thread.sleep(1000);

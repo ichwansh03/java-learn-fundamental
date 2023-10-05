@@ -9,3 +9,8 @@
 * Disarankan menggunakan high level API, concurrent di Java 5 dan `ThreadPoolExecutor` ketimbang membuat thread secara manual.
 * Jika ingin menghentikan Threadpool, gunakan `shutdown()` jika ada thread yg belum di execute, maka akan di ignore. Atau gunakan `awaitTermination()` untuk menunggu execute thread selesai.
 * Jika interface `Runnable` ketika menjalankan thread, interface tersebut tidak mengembalikan data (void). Gunakan interface `Callable<T>` yang mengembalikan data `Future<T>` (Future of T).
+* Gunakan sub-interface `ScheduledExecutorService` untuk scheduling setiap task seperti delayed job dan periodic job.
+* Pada `Lock()` terdapat 2 jenis untuk operasi read dan write. Gunakan interface `ReadWriteLock()`, Namun ini masih low-level. 
+* Pada class `ThreadTest`, upgrade penggunaan method ke high level, gunakan `await()`, `signal()` dan `signalAll()`.
+* Class `Semaphore` digunakan untuk membatasi thread yang diexecute, contohnya ketika menjalankan query atau request ke API maka dilakukan limitasi agar tidak terlalu banyak request. Lihat class `SynchronizerTest`
+* Class `Exchanger` digunakan untuk penukaran data antar thread, dan dua thread harus memenuhi pertukaran data satu sama lain. Lihat class `SynchronizerTest`.
