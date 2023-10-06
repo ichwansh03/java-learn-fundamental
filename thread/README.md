@@ -12,5 +12,7 @@
 * Gunakan sub-interface `ScheduledExecutorService` untuk scheduling setiap task seperti delayed job dan periodic job.
 * Pada `Lock()` terdapat 2 jenis untuk operasi read dan write. Gunakan interface `ReadWriteLock()`, Namun ini masih low-level. 
 * Pada class `ThreadTest`, upgrade penggunaan method ke high level, gunakan `await()`, `signal()` dan `signalAll()`.
-* Class `Semaphore` digunakan untuk membatasi thread yang diexecute, contohnya ketika menjalankan query atau request ke API maka dilakukan limitasi agar tidak terlalu banyak request. Lihat class `SynchronizerTest`
+* Class `Semaphore` digunakan untuk membatasi thread yang diexecute, contohnya ketika menjalankan query atau request ke API maka dilakukan limitasi agar tidak terlalu banyak request. Lihat class `SynchronizerTest`.
 * Class `Exchanger` digunakan untuk penukaran data antar thread, dan dua thread harus memenuhi pertukaran data satu sama lain. Lihat class `SynchronizerTest`.
+* Konsep Fork/Join sama seperti algoritma divide and conquer, 1 task akan di pecah menjadi 2 task kecil dan seterusnya, lalu dari task kecil tersebut digabung sehingga menghasilkan 1 task hasil penggabungan. Fork/Join thread mengimplementasikan algoritma work stealing dengan konsep mengambil thread yg sudah selesai mengerjakan task.
+* Dalam reactive stream, terdapat Flow API yg support dengan java concurrent ![Flow](https://www.reactive-streams.org/). Pada Flow dikenal istilah Publisher yang mengirim data dan Subscriber yang menerima data. Jika ingin mengirim ke subscriber lain dan diterima publisher lain gunakan interface `Processor`. 
