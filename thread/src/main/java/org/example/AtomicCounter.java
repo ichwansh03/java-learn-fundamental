@@ -10,6 +10,14 @@ public class AtomicCounter {
         counter.incrementAndGet();
     }
 
+    public void decrement(){
+        counter.decrementAndGet();
+    }
+
+    public void getIncrement(){
+        counter.getAndIncrement();
+    }
+
     public Integer getCounter(){
         return counter.get();
     }
