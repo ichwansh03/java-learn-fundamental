@@ -22,14 +22,53 @@ public class ExecutorServiceTest {
             });
         }
 
+        executor.shutdown();
         executor.awaitTermination(1, TimeUnit.MINUTES);
     }
 
     @Test
     void testFixedServiceExecutor() throws InterruptedException {
-        var executor = Executors.newFixedThreadPool(5);
+        var executor = Executors.newFixedThreadPool(10);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 50; i++) {
+            executor.execute(() -> {
+                try {
+                    Thread.sleep(1000);
+                    System.out.println("execute in thread "+Thread.currentThread().getName());
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+
+        executor.shutdown();
+        executor.awaitTermination(1, TimeUnit.MINUTES);
+    }
+
+    @Test
+    void testWorkStealingServiceExecutor() throws InterruptedException {
+        var executor = Executors.newWorkStealingPool(10);
+
+        for (int i = 0; i < 50; i++) {
+            executor.execute(() -> {
+                try {
+                    Thread.sleep(1000);
+                    System.out.println("execute in thread "+Thread.currentThread().getName());
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+        }
+
+        executor.shutdown();
+        executor.awaitTermination(1, TimeUnit.MINUTES);
+    }
+
+    @Test
+    void testCachedExecutor() throws InterruptedException {
+        var executor = Executors.newCachedThreadPool();
+
+        for (int i = 0; i < 50; i++) {
             executor.execute(() -> {
                 try {
                     Thread.sleep(1000);
