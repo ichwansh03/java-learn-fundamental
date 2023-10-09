@@ -2,18 +2,16 @@ package org.example.data;
 
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+import java.lang.reflect.*;
 import java.util.Arrays;
 
 class PersonTest {
 
     @Test
-    void testCreateClass() {
+    void testCreateClass() throws NoSuchFieldException {
         Class<Person> personClass = Person.class;
         Package personClassPackage = personClass.getPackage();
+        Field age = personClass.getDeclaredField("age");
 
         System.out.println(personClassPackage.getName());
         System.out.println(Arrays.toString(personClassPackage.getAnnotations()));
@@ -26,6 +24,9 @@ class PersonTest {
         System.out.println(personClass.getCanonicalName());
         System.out.println(Arrays.toString(personClass.getClasses()));
         System.out.println(Arrays.toString(personClass.getDeclaredFields()));
+        System.out.println(personClass.getAnnotation(ReflectionInfo.class));
+        //khusus get tipe data primitive (int, long, boolean)
+        System.out.println(age.getType().isPrimitive());
     }
 
     @Test
@@ -34,15 +35,27 @@ class PersonTest {
         Field name = personClass.getDeclaredField("name");
         name.setAccessible(true);
 
+        Field age = personClass.getDeclaredField("age");
+        age.setAccessible(true);
+
         Person person = new Person("Ichwan", "ichwan@test.com", 22);
         name.set(person, "Mahmud");
         System.out.println(person.getName());
+        System.out.println(age.getInt(person));
     }
 
     @Test
     void testGetMethodParameters() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Class<Person> personClass = Person.class;
         Method[] methods = personClass.getDeclaredMethods();
+
+        Method getActivities = personClass.getDeclaredMethod("getActivities");
+        Type type = getActivities.getGenericReturnType();
+
+        if (type instanceof ParameterizedType){
+            ParameterizedType parameterizedType = (ParameterizedType) type;
+            System.out.println(parameterizedType.getRawType());
+        }
 
         for (Method value: methods){
             System.out.println(value.getName());
@@ -52,5 +65,6 @@ class PersonTest {
 
         Person person = new Person("Ichwan", "ichwan@test.com", 22);
         setName.invoke(person,"Abdullah");
+        System.out.println(person.getName());
     }
 }
