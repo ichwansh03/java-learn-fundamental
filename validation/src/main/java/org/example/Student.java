@@ -7,14 +7,14 @@ import jakarta.validation.constraints.Size;
 
 public class Student {
 
-    @NotBlank(message = "name cannot blank")
+    @NotBlank(message = "{name.id.notblank}")
     private String name;
 
-    @NotBlank(message = "NIP cannot blank")
-    @Size(max = 8, message = "NIP length cannot more than 8 characters")
+    @NotBlank(message = "{nip.id.notblank}")
+    @Size(max = 8, message = "{nip.size.max}")
     private String nip;
 
-    @NotNull(message = "address cannot null")
+    @NotNull(message = "{address.id.notnull}")
     @Valid
     private Address address;
 
@@ -23,7 +23,7 @@ public class Student {
     }
 
     @Valid
-    public Student(@NotBlank(message = "name cannot blank") String name,@NotBlank(message = "NIP cannot blank") String nip, @NotNull(message = "Address cannot null") @Valid Address address) {
+    public Student(@NotBlank(message = "{name.id.notblank}") String name,@NotBlank(message = "{nip.id.notblank}") String nip, @NotNull(message = "Address cannot null") @Valid Address address) {
         this.name = name;
         this.nip = nip;
         this.address = address;
@@ -61,11 +61,11 @@ public class Student {
                 '}';
     }
 
-    public void lesson(@NotBlank(message = "subject cannot blank") String subject){
+    public void lesson(@NotBlank(message = "{subject.id.notblank}") String subject){
         System.out.println("you took subject "+subject);
     }
 
-    @NotBlank(message = "class code cannot blank")
+    @NotBlank(message = "{class.id.notblank}")
     public String classCode(){
         return nip;
     }
