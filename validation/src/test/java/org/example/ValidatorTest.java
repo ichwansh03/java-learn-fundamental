@@ -27,7 +27,7 @@ public class ValidatorTest extends ValidateContract {
     @Test
     void testHibernateConstraintValidator(){
         Payment payment = new Payment();
-        payment.setAmount(100000L);
+        payment.setAmount(1000L);
         payment.setOrderId("O0001");
         payment.setCreditCard("123");
 
@@ -37,7 +37,7 @@ public class ValidatorTest extends ValidateContract {
     @Test
     void testValidationGroups(){
         Payment payment = new Payment();
-        payment.setAmount(100000L);
+        payment.setAmount(100L);
         payment.setOrderId("O0001");
         payment.setCreditCard("123");
         payment.setVirtualAccount("123");
