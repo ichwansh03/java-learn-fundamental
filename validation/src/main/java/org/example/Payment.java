@@ -1,22 +1,53 @@
 package org.example;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.groups.ConvertGroup;
+import jakarta.validation.groups.Default;
+import org.example.group.CreditCardPaymentGroup;
+import org.example.group.VirtualAccountPaymentGroup;
 import org.hibernate.validator.constraints.LuhnCheck;
 import org.hibernate.validator.constraints.Range;
 
 public class Payment {
 
-    @NotBlank(message = "order id can't blank")
+    @NotBlank(groups = {CreditCardPaymentGroup.class, VirtualAccountPaymentGroup.class} ,message = "order id can't blank")
     private String orderId;
 
-    @NotNull(message = "amount can't null")
-    @Range(min = 50_000L, max = 2_000_000L, message = "amount must between 50.000 and 2.000.000")
+    @NotNull(groups = {CreditCardPaymentGroup.class, VirtualAccountPaymentGroup.class}, message = "amount can't null")
+    @Range(groups = {CreditCardPaymentGroup.class, VirtualAccountPaymentGroup.class}, min = 50_000L, max = 2_000_000L, message = "amount must between 50.000 and 2.000.000")
     private Long amount;
 
-    @LuhnCheck(message = "invalid credit card number")
-    @NotBlank(message = "credit card can't blank")
+    @LuhnCheck(groups = {CreditCardPaymentGroup.class}, message = "invalid credit card number")
+    @NotBlank(groups = {CreditCardPaymentGroup.class}, message = "credit card can't blank")
     private String creditCard;
+
+    @LuhnCheck(groups = {VirtualAccountPaymentGroup.class}, message = "invalid virtual account number")
+    @NotBlank(groups = {VirtualAccountPaymentGroup.class}, message = "virtual account can't blank")
+    private String virtualAccount;
+
+    @NotNull(message = "customer cannot null", groups = {CreditCardPaymentGroup.class, VirtualAccountPaymentGroup.class})
+    @Valid
+    @ConvertGroup(from = VirtualAccountPaymentGroup.class, to = Default.class)
+    @ConvertGroup(from = CreditCardPaymentGroup.class, to = Default.class)
+    private Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public String getVirtualAccount() {
+        return virtualAccount;
+    }
+
+    public void setVirtualAccount(String virtualAccount) {
+        this.virtualAccount = virtualAccount;
+    }
 
     public String getOrderId() {
         return orderId;
@@ -48,6 +79,8 @@ public class Payment {
                 "orderId='" + orderId + '\'' +
                 ", amount=" + amount +
                 ", creditCard='" + creditCard + '\'' +
+                ", virtualAccount='" + virtualAccount + '\'' +
+                ", customer=" + customer +
                 '}';
     }
 }
