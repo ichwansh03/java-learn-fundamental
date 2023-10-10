@@ -57,4 +57,13 @@ public class Student {
                 ", nip='" + nip + '\'' +
                 '}';
     }
+
+    public void lesson(@NotBlank(message = "subject cannot blank") String subject){
+        System.out.println("you took subject "+subject);
+    }
+
+    @NotBlank(message = "class code cannot blank")
+    public String classCode(){
+        return nip;
+    }
 }
