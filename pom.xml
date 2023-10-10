@@ -15,6 +15,7 @@
     <module>database</module>
     <module>thread</module>
     <module>reflection</module>
+    <module>validation</module>
   </modules>
 
   <name>JavaReflectionFundamental</name>
