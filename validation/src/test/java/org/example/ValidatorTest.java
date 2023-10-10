@@ -1,42 +1,15 @@
 package org.example;
 
-import jakarta.validation.*;
-import org.example.group.CreditCardPaymentGroup;
-import org.example.group.PaymentGroupSequence;
-import org.example.group.VirtualAccountPaymentGroup;
+import org.example.group.*;
 import org.junit.jupiter.api.*;
-import java.util.Set;
 
-public class ValidatorTest {
-
-    private ValidatorFactory factory;
-    private Validator validator;
-
-    @BeforeEach
-    void setUp(){
-        factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
-    }
-
-    @AfterEach
-    void tearDown(){
-        factory.close();
-    }
+public class ValidatorTest extends ValidateContract {
 
     @Test
     void testConstrainValidation(){
         Student student = new Student();
 
-        Set<ConstraintViolation<Student>> validate = validator.validate(student);
-        Assertions.assertEquals(2, validate.size());
-
-        for (ConstraintViolation<Student> violations : validate) {
-            System.out.println(violations.getMessage());
-            System.out.println(violations.getLeafBean());
-            System.out.println(violations.getConstraintDescriptor().getAttributes());
-            System.out.println(violations.getConstraintDescriptor().getAnnotation());
-            System.out.println(violations.getInvalidValue());
-        }
+        validate(student);
     }
 
     @Test
@@ -93,23 +66,5 @@ public class ValidatorTest {
         payment.setCustomer(new Customer());
 
         validateWithGroups(payment, CreditCardPaymentGroup.class);
-    }
-
-    void validate(Object o){
-        Set<ConstraintViolation<Object>> violations = validator.validate(o);
-        for (ConstraintViolation<Object> violation : violations){
-            System.out.println(violation.getMessage());
-            System.out.println(violation.getPropertyPath());
-            System.out.println("++++++++");
-        }
-    }
-
-    void validateWithGroups(Object o, Class<?>... classes){
-        Set<ConstraintViolation<Object>> violations = validator.validate(o, classes);
-        for (ConstraintViolation<Object> violation : violations){
-            System.out.println(violation.getMessage());
-            System.out.println(violation.getPropertyPath());
-            System.out.println("++++++++");
-        }
     }
 }

@@ -1,37 +1,15 @@
 package org.example;
 
 import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
-import jakarta.validation.executable.ExecutableValidator;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
 import java.util.Set;
 
-public class MethodValidatorTest {
-
-    private ValidatorFactory factory;
-    private Validator validator;
-
-    @BeforeEach
-    void setUp(){
-        factory = Validation.buildDefaultValidatorFactory();
-        validator = factory.getValidator();
-    }
-
-    @AfterEach
-    void tearDown(){
-        factory.close();
-    }
+public class MethodValidatorTest extends ValidateContract{
 
     @Test
     void methodValidationTest() throws NoSuchMethodException {
-
-        ExecutableValidator executableValidator = validator.forExecutables();
 
         Student student = new Student();
         String subject = "Ahmad";
@@ -49,7 +27,6 @@ public class MethodValidatorTest {
 
     @Test
     void methodReturnValueValidationTest() throws NoSuchMethodException {
-        ExecutableValidator executableValidator = validator.forExecutables();
 
         Student student = new Student();
 

@@ -18,12 +18,15 @@ public class Student {
     @Valid
     private Address address;
 
+    @Valid
     public Student() {
     }
 
-    public Student(String name, String nip) {
+    @Valid
+    public Student(@NotBlank(message = "name cannot blank") String name,@NotBlank(message = "NIP cannot blank") String nip, @NotNull(message = "Address cannot null") @Valid Address address) {
         this.name = name;
         this.nip = nip;
+        this.address = address;
     }
 
     public Address getAddress() {
