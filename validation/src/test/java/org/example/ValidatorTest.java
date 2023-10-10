@@ -1,6 +1,9 @@
 package org.example;
 
 import jakarta.validation.*;
+import org.example.group.CreditCardPaymentGroup;
+import org.example.group.PaymentGroupSequence;
+import org.example.group.VirtualAccountPaymentGroup;
 import org.junit.jupiter.api.*;
 import java.util.Set;
 
@@ -58,8 +61,51 @@ public class ValidatorTest {
         validate(payment);
     }
 
+    @Test
+    void testValidationGroups(){
+        Payment payment = new Payment();
+        payment.setAmount(100000L);
+        payment.setOrderId("O0001");
+        payment.setCreditCard("123");
+        payment.setVirtualAccount("123");
+
+        //validateWithGroups(payment, CreditCardPaymentGroup.class);
+        validateWithGroups(payment, VirtualAccountPaymentGroup.class);
+    }
+
+    @Test
+    void testValidationGroupSequence(){
+        Payment payment = new Payment();
+        payment.setAmount(100000L);
+        payment.setOrderId("O0001");
+        payment.setCreditCard("123");
+        payment.setVirtualAccount("123");
+
+        validateWithGroups(payment, PaymentGroupSequence.class);
+    }
+
+    @Test
+    void testGroupConvert(){
+        Payment payment = new Payment();
+        payment.setAmount(100000L);
+        payment.setOrderId("O0001");
+        payment.setCreditCard("4111111111111111");
+        payment.setCustomer(new Customer());
+
+        validateWithGroups(payment, CreditCardPaymentGroup.class);
+    }
+
     void validate(Object o){
         Set<ConstraintViolation<Object>> violations = validator.validate(o);
+        for (ConstraintViolation<Object> violation : violations){
+            System.out.println(violation.getMessage());
+            System.out.println(violation.getPropertyPath());
+            System.out.println("++++++++");
+        }
+    }
+
+    void validateWithGroups(Object o, Class<?>... classes){
+        Set<ConstraintViolation<Object>> violations = validator.validate(o, classes);
         for (ConstraintViolation<Object> violation : violations){
             System.out.println(violation.getMessage());
             System.out.println(violation.getPropertyPath());
