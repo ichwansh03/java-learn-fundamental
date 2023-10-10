@@ -21,11 +21,11 @@ public class Payment {
     @Range(groups = {CreditCardPaymentGroup.class, VirtualAccountPaymentGroup.class}, min = 50_000L, max = 2_000_000L, message = "amount must between {min} and {max}")
     private Long amount;
 
-    @LuhnCheck(groups = {CreditCardPaymentGroup.class}, message = "invalid credit card number")
+    @LuhnCheck(payload = {ErrorPayload.class}, groups = {CreditCardPaymentGroup.class}, message = "invalid credit card number")
     @NotBlank(groups = {CreditCardPaymentGroup.class}, message = "credit card can't blank")
     private String creditCard;
 
-    @LuhnCheck(groups = {VirtualAccountPaymentGroup.class}, message = "invalid virtual account number")
+    @LuhnCheck(payload = {ErrorPayload.class}, groups = {VirtualAccountPaymentGroup.class}, message = "invalid virtual account number")
     @NotBlank(groups = {VirtualAccountPaymentGroup.class}, message = "virtual account can't blank")
     private String virtualAccount;
 
