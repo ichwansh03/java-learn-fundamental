@@ -16,6 +16,7 @@
     <module>thread</module>
     <module>reflection</module>
     <module>validation</module>
+    <module>logging</module>
   </modules>
 
   <name>JavaReflectionFundamental</name>
