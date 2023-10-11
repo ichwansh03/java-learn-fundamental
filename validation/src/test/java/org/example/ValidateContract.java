@@ -1,9 +1,6 @@
 package org.example;
 
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
+import jakarta.validation.*;
 import jakarta.validation.executable.ExecutableValidator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,6 +31,13 @@ public abstract class ValidateContract {
             System.out.println(violation.getMessage());
             System.out.println(violation.getPropertyPath());
             System.out.println("++++++++");
+        }
+    }
+
+    void validateWithException(Object o){
+        Set<ConstraintViolation<Object>> violations = validator.validate(o);
+        if (!violations.isEmpty()) {
+            throw new ConstraintViolationException(violations);
         }
     }
 
