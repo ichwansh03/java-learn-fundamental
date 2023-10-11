@@ -13,5 +13,7 @@ public class LoggerTest {
 
         log.info("Hello Logger");
         log.error("hayo...");
+
+        log.error("Error Null Pointer Exception", new NullPointerException());
     }
 }
