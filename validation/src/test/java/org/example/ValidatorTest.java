@@ -1,5 +1,6 @@
 package org.example;
 
+import jakarta.validation.ConstraintViolationException;
 import org.example.group.*;
 import org.junit.jupiter.api.*;
 
@@ -11,6 +12,16 @@ public class ValidatorTest extends ValidateContract {
 
         validate(student);
     }
+
+    @Test
+    void testConstrainValidationException(){
+
+        Assertions.assertThrows(ConstraintViolationException.class, () -> {
+            Student student = new Student();
+            validateWithException(student);
+        });
+    }
+
 
     @Test
     void testNestedValidation(){

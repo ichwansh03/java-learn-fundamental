@@ -5,7 +5,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 public class Student {
+
+    @Valid
+    private List<@NotBlank(message = "subjects are not blank") String> subjects;
 
     @NotBlank(message = "{name.id.notblank}")
     private String name;
@@ -27,6 +32,14 @@ public class Student {
         this.name = name;
         this.nip = nip;
         this.address = address;
+    }
+
+    public List<String> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<String> subjects) {
+        this.subjects = subjects;
     }
 
     public Address getAddress() {

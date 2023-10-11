@@ -1,4 +1,4 @@
-package org.example;
+package org.example.custom;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.example.custom.CaseMode;
 import org.example.custom.CheckCase;
-import org.example.custom.CheckCaseValidator;
 import org.example.group.CreditCardPaymentGroup;
 import org.example.group.VirtualAccountPaymentGroup;
 
