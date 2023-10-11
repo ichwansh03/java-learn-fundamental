@@ -38,7 +38,7 @@ public class ValidatorTest extends ValidateContract {
     void testValidationGroups(){
         Payment payment = new Payment();
         payment.setAmount(100L);
-        payment.setOrderId("O0001");
+        payment.setOrderId("AIAA");
         payment.setCreditCard("123");
         payment.setVirtualAccount("123");
 
