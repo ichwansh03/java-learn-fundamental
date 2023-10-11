@@ -67,4 +67,14 @@ public class ValidatorTest extends ValidateContract {
 
         validateWithGroups(payment, CreditCardPaymentGroup.class);
     }
+
+    @Test
+    void testRegister(){
+        Register register = new Register();
+        register.setUsername("Hai");
+        register.setPassword("123");
+        register.setConfirmPassword("1234");
+
+        validate(register);
+    }
 }
