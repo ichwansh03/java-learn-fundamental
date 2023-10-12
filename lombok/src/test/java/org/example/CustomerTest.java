@@ -7,7 +7,7 @@ public class CustomerTest {
     @Test
     void testCustomer() {
 
-        Customer customer = new Customer();
+        Customer customer = new Customer("123B", "Pablo");
 
         customer.setId("123A");
         customer.setName("Ichwan");
