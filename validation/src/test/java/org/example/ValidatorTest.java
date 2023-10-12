@@ -84,7 +84,7 @@ public class ValidatorTest extends ValidateContract {
         Register register = new Register();
         register.setUsername("Hai");
         register.setPassword("123");
-        register.setConfirmPassword("1234");
+        register.setConfirmPassword("123");
 
         validate(register);
     }

@@ -12,7 +12,7 @@ public class MethodValidatorTest extends ValidateContract{
     void methodValidationTest() throws NoSuchMethodException {
 
         Student student = new Student();
-        String subject = "Ahmad";
+        String subject = "";
 
         Method method = student.getClass().getMethod("lesson", String.class);
 
@@ -21,6 +21,10 @@ public class MethodValidatorTest extends ValidateContract{
             System.out.println(violation.getMessage());
             System.out.println(violation.getLeafBean());
             System.out.println(violation.getPropertyPath());
+
+            System.out.println(violation.getConstraintDescriptor());
+            System.out.println(violation.getConstraintDescriptor().getAttributes());
+            System.out.println(violation.getConstraintDescriptor().getGroups());
             System.out.println("++++++++");
         }
     }
