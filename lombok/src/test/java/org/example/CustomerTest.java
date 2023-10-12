@@ -13,5 +13,6 @@ public class CustomerTest {
         customer.setName("Ichwan");
 
         System.out.println(customer.getId() + " " + customer.getName());
+        System.out.println(customer);
     }
 }
