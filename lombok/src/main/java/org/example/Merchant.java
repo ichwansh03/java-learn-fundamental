@@ -7,9 +7,10 @@ import lombok.*;
 @RequiredArgsConstructor //constructor untuk field yg final
 @ToString(exclude = "id")
 @EqualsAndHashCode(exclude = {"id"})
+@Value
 public class Merchant {
 
-    private final String id;
+    String id;
 
-    private String address;
+    String address;
 }
