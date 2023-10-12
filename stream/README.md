@@ -7,3 +7,6 @@
 * Operation di stream terbagi menjadi 2 jenis, yaitu intermediate operations merupakan lazy operation, tidak akan dieksekusi sampai dibutuhkan dan terminal operations merupakan operasi yang mentrigger sebuah stream untuk berjalan.
 * Karena stream hanya dapat digunakan untuk tipe data object, maka class stream tidak dapat digunakan di tipe data primitif. Gunakan class `IntStream`, `LongStream` atau `DoubleStream`. Fungsi turunannya sama dengan Stream.
 * Untuk mengubah dari Stream ke Collection, gunakan operator `collect(Collectors)`
+
+## Related Article
+![Mengenal Konsep Reactive Programming di Java](https://ichwansholihin.medium.com/mengenal-konsep-reactive-programming-di-java-ecc6fde79dac)
