@@ -8,4 +8,4 @@
 * Di java, tabel direpresentasikan dengan entity dan setiap entity harus memiliki layer repository.
 
 ## Related Article
-![How to Keep Away SQL Injection Attack When Call DB User in Java](https://ichwansholihin.medium.com/how-to-keep-away-sql-injection-when-call-db-user-in-java-98255577d8c1)
+[How to Keep Away SQL Injection Attack When Call DB User in Java](https://ichwansholihin.medium.com/how-to-keep-away-sql-injection-when-call-db-user-in-java-98255577d8c1)
