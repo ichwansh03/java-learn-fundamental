@@ -10,7 +10,7 @@
 * Jika ingin mengulang test, gunakan annotation `@RepeatedTest`.
 * Jika ingin mengagalkan test yang memakan waktu lama, gunakan annotation `@Timeout`.
 * Jika unit-test tidak bergantung dengan test lain, gunakan paralel test. Tambahkan file `junit-platform.properties` dan aktifkan parallel execution dan tambahkan annotation `@Execution(CONCURRENT)` di test class.
-* Jika ada ketergantungan antar class di unit-test, gunakan framework mocking seperti ![Mockito](https://site.mockito.org)
+* Jika ada ketergantungan antar class di unit-test, gunakan framework mocking seperti [Mockito](https://site.mockito.org)
 
 ## Related Article
-![Pengujian dan Verifikasi Menggunakan Mocking Test di Java](https://ichwansholihin.medium.com/pengujian-dan-verifikasi-menggunakan-mocking-test-di-java-947bdc7e2b82)
+[Pengujian dan Verifikasi Menggunakan Mocking Test di Java](https://ichwansholihin.medium.com/pengujian-dan-verifikasi-menggunakan-mocking-test-di-java-947bdc7e2b82)
