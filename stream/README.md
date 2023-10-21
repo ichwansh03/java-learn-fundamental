@@ -9,4 +9,4 @@
 * Untuk mengubah dari Stream ke Collection, gunakan operator `collect(Collectors)`
 
 ## Related Article
-![Mengenal Konsep Reactive Programming di Java](https://ichwansholihin.medium.com/mengenal-konsep-reactive-programming-di-java-ecc6fde79dac)
+[Mengenal Konsep Reactive Programming di Java](https://ichwansholihin.medium.com/mengenal-konsep-reactive-programming-di-java-ecc6fde79dac)
