@@ -19,3 +19,6 @@
 
 ## Related Article
 [Mengenal Class Executors untuk Management Threading serta Implementasinya di Java](https://medium.com/@ichwansholihin/mengenal-class-executors-untuk-management-threading-serta-implementasinya-di-java-3b5e915ead0a)
+
+## Reference
+[Thread Safety in Java](https://www.youtube.com/watch?v=px4W-HXRWKk)
